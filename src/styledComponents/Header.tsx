@@ -17,6 +17,6 @@ export const Header = (props: Props) => {
 };
 const styles = StyleSheet.create({
     text: {
-        fontSize: 40,
+        fontSize: 35,
     },
 });

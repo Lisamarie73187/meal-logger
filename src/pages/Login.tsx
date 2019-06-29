@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Dimensions, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Dimensions, Image, StyleSheet, Text, TextInput, View} from 'react-native';
 import {Header} from '../styledComponents/Header';
 import {Colors} from '../styles/Colors';
 
@@ -12,7 +12,10 @@ export const Login = (props: Props) => {
     const [password, setPassword] = useState('');
     return (
         <View style={styles.bodyContainer}>
-            <Header text="Login" styles={styles.headerWrapper} />
+            <View style={styles.logoWrapper}>
+                <Image source={require('../assets/logoNoWords.png')} style={styles.logo} />
+            </View>
+            <Header text="Sign In" styles={styles.headerWrapper} />
             <TextInput
                 style={styles.input}
                 value={userName}
@@ -31,18 +34,25 @@ export const Login = (props: Props) => {
 const styles = StyleSheet.create({
     bodyContainer: {
         flex: 1,
+        paddingTop: height / 7,
+    },
+    logoWrapper: {
         alignItems: 'center',
-        justifyContent: 'center',
+    },
+    logo: {
+        width: width / 1.3,
+        height: height / 3,
     },
     headerWrapper: {
-        paddingBottom: 20,
+        paddingTop: 30,
     },
     input: {
-        height: 50,
-        width: width / 1.4,
+        height: 45,
+        width: width / 1.2,
         borderWidth: 1,
         borderColor: Colors.placeholderText,
         marginVertical: 10,
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
+        borderRadius: 30,
     },
 });
