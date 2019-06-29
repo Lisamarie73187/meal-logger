@@ -1,7 +1,16 @@
-import React, {useState} from 'react';
-import {Dimensions, StyleSheet, Text, TextInput, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+    Dimensions,
+    Picker,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+} from 'react-native';
 import {NavigationScreenProps} from 'react-navigation';
 import {CTA} from '../styledComponents/Button';
+import {DoublePicker} from '../styledComponents/DoublePicker';
 import {Header} from '../styledComponents/Header';
 import {Colors} from '../styles/Colors';
 
@@ -10,36 +19,39 @@ const {height, width} = Dimensions.get('window');
 interface Props extends NavigationScreenProps<any> {}
 
 export const Metrics = (props: Props) => {
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
+    const [userFeet, setUserFeet] = useState(0);
+    const [userInches, setUserInches] = useState(0);
+    const [heightPicker, setHeightPicker] = useState(false);
+
+    const getFeetArray = () => {
+        const feetArray = [];
+        for (let i = 3; i < 8; i++) {
+            feetArray.push(i);
+        }
+        return feetArray;
+    };
+
+    const getInchesArray = () => {
+        const inchesArray = [];
+        for (let i = 0; i < 12; i++) {
+            inchesArray.push(i);
+        }
+        return inchesArray;
+    };
+
     return (
         <View style={styles.bodyContainer}>
             <Header text="Metrics" styles={styles.headerWrapper} />
             <View style={styles.inputWrapper}>
-                <TextInput
-                    style={styles.input}
-                    value={userName}
-                    onChangeText={(input: any) => setUserName(input)}
-                    placeholder="height"
-                />
-                <TextInput
-                    style={styles.input}
-                    value={password}
-                    onChangeText={(input: any) => setPassword(input)}
-                    placeholder="birthday"
-                />
-                <TextInput
-                    style={styles.input}
-                    value={password}
-                    onChangeText={(input: any) => setPassword(input)}
-                    placeholder="gender"
-                />
-                <TextInput
-                    style={styles.input}
-                    value={password}
-                    onChangeText={(input: any) => setPassword(input)}
-                    placeholder="activity level"
-                />
+                <TouchableOpacity onPress={() => setHeightPicker(true)} style={styles.input}>
+                    {userFeet || userInches ? (
+                        <Text>
+                            {userFeet}' {userInches}"
+                        </Text>
+                    ) : (
+                        <Text style={styles.textPlaceholder}>height</Text>
+                    )}
+                </TouchableOpacity>
                 <View style={styles.ctaWrapper}>
                     <CTA
                         background={Colors.green}
@@ -48,6 +60,19 @@ export const Metrics = (props: Props) => {
                     />
                 </View>
             </View>
+            {heightPicker && (
+                <DoublePicker
+                    items={getFeetArray()}
+                    value={userFeet}
+                    setValue={setUserFeet}
+                    secondItems={getInchesArray()}
+                    secondValue={userInches}
+                    secondSetValue={setUserInches}
+                    label="ft"
+                    labelTwo="in"
+                    close={() => setHeightPicker(false)}
+                />
+            )}
         </View>
     );
 };
@@ -73,5 +98,9 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 30,
+        justifyContent: 'center',
+    },
+    textPlaceholder: {
+        color: Colors.lightGray,
     },
 });
