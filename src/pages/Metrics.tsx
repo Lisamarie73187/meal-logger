@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Dimensions, StyleSheet, Text, TextInput, View} from 'react-native';
+import {NavigationScreenProps} from 'react-navigation';
+import {CTA} from '../styledComponents/Button';
 import {Header} from '../styledComponents/Header';
 import {Colors} from '../styles/Colors';
-import {CTA} from '../styledComponents/Button';
-import {NavigationScreenProps} from "react-navigation";
 
-const {height, width} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 interface Props extends NavigationScreenProps<any> {}
 
@@ -39,7 +39,11 @@ export const Metrics = (props: Props) => {
                 onChangeText={(input: any) => setPassword(input)}
                 placeholder="confirm password"
             />
-            <CTA text="continue" onClick={() => props.navigation.navigate('Metrics')}/>
+            <CTA
+                background={Colors.green}
+                text="continue"
+                onClick={() => props.navigation.navigate('Metrics')}
+            />
         </View>
     );
 };

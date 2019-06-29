@@ -11,7 +11,7 @@ export const Login = (props: Props) => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     return (
-        <View style={styles.bodyContainer}>
+        <View>
             <View style={styles.logoWrapper}>
                 <Image source={require('../assets/logoNoWords.png')} style={styles.logo} />
             </View>
@@ -32,10 +32,6 @@ export const Login = (props: Props) => {
     );
 };
 const styles = StyleSheet.create({
-    bodyContainer: {
-        flex: 1,
-        paddingTop: height / 7,
-    },
     logoWrapper: {
         alignItems: 'center',
     },
@@ -45,6 +41,7 @@ const styles = StyleSheet.create({
     },
     headerWrapper: {
         paddingTop: 30,
+        paddingHorizontal: 10,
     },
     input: {
         height: 45,
