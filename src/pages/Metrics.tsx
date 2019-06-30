@@ -12,9 +12,15 @@ import {NavigationScreenProps} from 'react-navigation';
 import {CTA} from '../styledComponents/Button';
 import {DoublePicker} from '../styledComponents/DoublePicker';
 import {Header} from '../styledComponents/Header';
+import {MealLoggerDatePicker} from '../styledComponents/MealLoggerDatePicker';
+import {PickerInput} from '../styledComponents/PickerInput';
+import {SinglePicker} from '../styledComponents/SinglePicker';
 import {Colors} from '../styles/Colors';
+import {FormatUtils} from '../utils/formatUtils';
 
 const {height, width} = Dimensions.get('window');
+
+const activityLevelItems = ['Sedentary', 'Lightly Active', 'Active', 'Very Active'];
 
 interface Props extends NavigationScreenProps<any> {}
 
@@ -22,6 +28,14 @@ export const Metrics = (props: Props) => {
     const [userFeet, setUserFeet] = useState(0);
     const [userInches, setUserInches] = useState(0);
     const [heightPicker, setHeightPicker] = useState(false);
+    const [weight, setWeight] = useState(0);
+    const [weightPicker, setWeightPicker] = useState(false);
+    const [userBday, setUserBday] = useState(null);
+    const [bdayPicker, setBdayPicker] = useState(false);
+    const [gender, setGender] = useState('');
+    const [genderPicker, setGenderPicker] = useState(false);
+    const [activityLevel, setActivityLevel] = useState('');
+    const [activityLevelPicker, setActivityLevelPicker] = useState(false);
 
     const getFeetArray = () => {
         const feetArray = [];
@@ -39,24 +53,85 @@ export const Metrics = (props: Props) => {
         return inchesArray;
     };
 
+    const getWeightArray = () => {
+        const inchesArray = [];
+        for (let i = 90; i < 300; i++) {
+            inchesArray.push(i);
+        }
+        return inchesArray;
+    };
+
+    const closePickers = () => {
+        setActivityLevelPicker(false);
+        setGenderPicker(false);
+        setBdayPicker(false);
+        setWeightPicker(false);
+        setHeightPicker(false);
+    };
+
+    const continueToHome = () => {
+        const user = {
+            height: {
+                feet: userFeet,
+                inches: userInches,
+            },
+            weight,
+            bday: userBday,
+            gender,
+            activityLevel,
+        };
+
+        props.navigation.navigate('HomePage', {user});
+    };
+
     return (
         <View style={styles.bodyContainer}>
             <Header text="Metrics" styles={styles.headerWrapper} />
             <View style={styles.inputWrapper}>
-                <TouchableOpacity onPress={() => setHeightPicker(true)} style={styles.input}>
-                    {userFeet || userInches ? (
-                        <Text>
-                            {userFeet}' {userInches}"
-                        </Text>
-                    ) : (
-                        <Text style={styles.textPlaceholder}>height</Text>
-                    )}
-                </TouchableOpacity>
+                <PickerInput
+                    openPicker={() => {
+                        closePickers(), setHeightPicker(true);
+                    }}
+                    value={userFeet}
+                    label="'"
+                    secondValue={userInches}
+                    secondLabel='"'
+                    placeholder="height"
+                />
+                <PickerInput
+                    placeholder="weight"
+                    label="lbs"
+                    value={weight}
+                    openPicker={() => {
+                        closePickers(), setWeightPicker(true);
+                    }}
+                />
+                <PickerInput
+                    placeholder="birthday"
+                    value={userBday ? FormatUtils.localizePrettyDateFormat(userBday) : ''}
+                    openPicker={() => {
+                        closePickers(), setBdayPicker(true);
+                    }}
+                />
+                <PickerInput
+                    placeholder="gender"
+                    value={gender}
+                    openPicker={() => {
+                        closePickers(), setGenderPicker(true);
+                    }}
+                />
+                <PickerInput
+                    placeholder="activity level"
+                    value={activityLevel}
+                    openPicker={() => {
+                        closePickers(), setActivityLevelPicker(true);
+                    }}
+                />
                 <View style={styles.ctaWrapper}>
                     <CTA
                         background={Colors.green}
                         text="continue"
-                        onClick={() => props.navigation.navigate('Metrics')}
+                        onClick={continueToHome}
                     />
                 </View>
             </View>
@@ -71,6 +146,38 @@ export const Metrics = (props: Props) => {
                     label="ft"
                     labelTwo="in"
                     close={() => setHeightPicker(false)}
+                />
+            )}
+            {weightPicker && (
+                <SinglePicker
+                    items={getWeightArray()}
+                    value={weight}
+                    setValue={setWeight}
+                    label="lbs"
+                    close={() => setWeightPicker(false)}
+                />
+            )}
+            {bdayPicker && (
+                <MealLoggerDatePicker
+                    selectedDate={userBday ? userBday : new Date()}
+                    setDate={setUserBday}
+                    close={() => setBdayPicker(false)}
+                />
+            )}
+            {genderPicker && (
+                <SinglePicker
+                    items={['male', 'female']}
+                    value={gender}
+                    setValue={setGender}
+                    close={() => setGenderPicker(false)}
+                />
+            )}
+            {activityLevelPicker && (
+                <SinglePicker
+                    items={activityLevelItems}
+                    value={activityLevel}
+                    setValue={setActivityLevel}
+                    close={() => setActivityLevelPicker(false)}
                 />
             )}
         </View>

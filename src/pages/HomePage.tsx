@@ -10,9 +10,11 @@ const {height, width} = Dimensions.get('window');
 interface Props extends NavigationScreenProps<any> {}
 
 export const HomePage = (props: Props) => {
+    const user = props.navigation.getParam('user');
+
     return (
         <View style={styles.bodyContainer}>
-            <Text>HJSFkajdsf</Text>
+            <Text>Home</Text>
         </View>
     );
 };
