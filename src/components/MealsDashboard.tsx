@@ -33,6 +33,10 @@ const week = [
         day: 'Sat',
         calories: 1234,
     },
+    {
+        day: 'Sun',
+        calories: 1234,
+    },
 ];
 
 interface Props {}
