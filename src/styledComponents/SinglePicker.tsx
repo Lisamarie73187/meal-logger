@@ -1,16 +1,5 @@
-import React, {useState} from 'react';
-import {
-    Dimensions,
-    Picker,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-} from 'react-native';
-import {NavigationScreenProps} from 'react-navigation';
-import {CTA} from '../styledComponents/Button';
-import {Header} from '../styledComponents/Header';
+import React from 'react';
+import {Dimensions, Picker, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../styles/Colors';
 
 const {height, width} = Dimensions.get('window');
@@ -73,6 +62,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     pickerOne: {
-        width: width,
+        width,
     },
 });

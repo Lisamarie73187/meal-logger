@@ -5,9 +5,7 @@ import {Colors} from '../styles/Colors';
 
 const {height, width} = Dimensions.get('window');
 
-interface Props {}
-
-export const Login = (props: Props) => {
+export const Login = () => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     return (

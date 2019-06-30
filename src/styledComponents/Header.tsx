@@ -1,7 +1,5 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
-
-const {height} = Dimensions.get('window');
+import {StyleSheet, Text, View} from 'react-native';
 
 interface Props {
     text: string;

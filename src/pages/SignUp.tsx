@@ -5,7 +5,7 @@ import {CTA} from '../styledComponents/Button';
 import {Header} from '../styledComponents/Header';
 import {Colors} from '../styles/Colors';
 
-const {height, width} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 interface Props extends NavigationScreenProps<any> {}
 

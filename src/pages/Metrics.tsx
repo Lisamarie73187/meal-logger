@@ -1,13 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {
-    Dimensions,
-    Picker,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import {NavigationScreenProps} from 'react-navigation';
 import {CTA} from '../styledComponents/Button';
 import {DoublePicker} from '../styledComponents/DoublePicker';
@@ -18,7 +10,7 @@ import {SinglePicker} from '../styledComponents/SinglePicker';
 import {Colors} from '../styles/Colors';
 import {FormatUtils} from '../utils/formatUtils';
 
-const {height, width} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const activityLevelItems = ['Sedentary', 'Lightly Active', 'Active', 'Very Active'];
 
@@ -128,11 +120,7 @@ export const Metrics = (props: Props) => {
                     }}
                 />
                 <View style={styles.ctaWrapper}>
-                    <CTA
-                        background={Colors.green}
-                        text="continue"
-                        onClick={continueToHome}
-                    />
+                    <CTA background={Colors.green} text="continue" onClick={continueToHome} />
                 </View>
             </View>
             {heightPicker && (

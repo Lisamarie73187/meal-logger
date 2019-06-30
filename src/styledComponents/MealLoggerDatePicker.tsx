@@ -1,13 +1,5 @@
-import React, {Component, useState} from 'react';
-import {
-    DatePickerIOS,
-    Dimensions,
-    Picker,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import React from 'react';
+import {DatePickerIOS, Dimensions, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../styles/Colors';
 
 const {height, width} = Dimensions.get('window');
