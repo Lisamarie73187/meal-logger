@@ -63,17 +63,36 @@ export const Metrics = (props: Props) => {
 
     const continueToHome = () => {
         const user = {
-            height: {
-                feet: userFeet,
-                inches: userInches,
-            },
-            weight,
-            bday: userBday,
+            name: props.navigation.getParam('name'),
+            email: props.navigation.getParam('email'),
+            feet: `${userFeet}`,
+            inches: `${userInches}`,
+            weight: `${weight}`,
+            bday: FormatUtils.localizePrettyDateFormat(userBday),
             gender,
             activityLevel,
         };
 
-        props.navigation.navigate('HomePage', {user});
+        // createUser(user);
+        props.navigation.navigate('HomePage');
+    };
+
+    const createUser = async (user: any) => {
+        try {
+            const response = await fetch(
+                'https://fh84ys69vl.execute-api.us-west-1.amazonaws.com/dev/user',
+                {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        user,
+                    }),
+                }
+            );
+            const responseJson = await response.json();
+            return responseJson;
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (

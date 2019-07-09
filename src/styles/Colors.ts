@@ -1,5 +1,6 @@
 interface GlobalColors {
     primaryBGMedium: string;
+    backgroundLight: string;
     yellow: string;
     green: string;
     button: string;
@@ -12,6 +13,7 @@ interface GlobalColors {
 
 export const Colors: GlobalColors = {
     primaryBGMedium: '#fdfdfd',
+    backgroundLight: '#FDF3E3',
     yellow: '#F7C744',
     green: '#9AC043',
     button: '#FF8C69',

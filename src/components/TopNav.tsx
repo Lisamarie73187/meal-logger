@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
-import {Dimensions, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import {NavigationScreenProps} from 'react-navigation';
+import React from 'react';
+import {Dimensions, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../styles/Colors';
 
-const {height, width} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const tabs = {
     meals: 'meals',

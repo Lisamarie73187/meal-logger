@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {NavigationScreenProps} from 'react-navigation';
-import {ActivityDashboard} from '../components/ActivityDashboard';
-import {MealsDashboard} from '../components/MealsDashboard';
+import {ActivityDashboard} from '../components/Dashboard/ActivityDashboard';
+import {MealsDashboard} from '../components/Dashboard/MealsDashboard';
+import {WaterDashboard} from '../components/Dashboard/WaterDashboard';
 import {TopNav} from '../components/TopNav';
-import {WaterDashboard} from '../components/WaterDashboard';
 
 const tabs = {
     meals: 'meals',
@@ -26,7 +26,7 @@ export const HomePage = (props: Props) => {
                 setTabWater={() => setTab(tabs.water)}
                 setTabActivity={() => setTab(tabs.activity)}
             />
-            {tab === tabs.meals && <MealsDashboard />}
+            {tab === tabs.meals && <MealsDashboard navigation={props.navigation} />}
             {tab === tabs.water && <WaterDashboard />}
             {tab === tabs.activity && <ActivityDashboard />}
         </View>

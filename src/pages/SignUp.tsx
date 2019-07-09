@@ -10,22 +10,24 @@ const {width} = Dimensions.get('window');
 interface Props extends NavigationScreenProps<any> {}
 
 export const SignUp = (props: Props) => {
-    const [userName, setUserName] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordTwo, setPasswordTwo] = useState('');
     return (
         <View style={styles.bodyContainer}>
             <Header text="Sign Up" styles={styles.headerWrapper} />
             <View style={styles.inputWrapper}>
                 <TextInput
                     style={styles.input}
-                    value={userName}
-                    onChangeText={(input: any) => setUserName(input)}
+                    value={name}
+                    onChangeText={(input: any) => setName(input)}
                     placeholder="name"
                 />
                 <TextInput
                     style={styles.input}
-                    value={password}
-                    onChangeText={(input: any) => setPassword(input)}
+                    value={email}
+                    onChangeText={(input: any) => setEmail(input)}
                     placeholder="email"
                 />
                 <TextInput
@@ -36,15 +38,15 @@ export const SignUp = (props: Props) => {
                 />
                 <TextInput
                     style={styles.input}
-                    value={password}
-                    onChangeText={(input: any) => setPassword(input)}
+                    value={passwordTwo}
+                    onChangeText={(input: any) => setPasswordTwo(input)}
                     placeholder="confirm password"
                 />
                 <View style={styles.ctaWrapper}>
                     <CTA
                         background={Colors.green}
                         text="continue"
-                        onClick={() => props.navigation.navigate('Metrics')}
+                        onClick={() => props.navigation.navigate('Metrics', {name, email})}
                     />
                 </View>
             </View>

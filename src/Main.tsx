@@ -1,6 +1,7 @@
 import '@babel/polyfill';
 import React from 'react';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
+import {AddMeal} from './pages/AddMeal';
 import {Home} from './pages/Home';
 import {HomePage} from './pages/HomePage';
 import {Login} from './pages/Login';
@@ -14,6 +15,7 @@ const AppNavigator = createStackNavigator(
         SignUp,
         Metrics,
         HomePage,
+        AddMeal,
     },
     {
         headerMode: 'none',
