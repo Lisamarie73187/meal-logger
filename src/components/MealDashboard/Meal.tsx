@@ -12,7 +12,7 @@ interface Props extends NavigationScreenProps<any> {
 
 export const Meal = (props: Props) => {
     return (
-        <TouchableOpacity onPress={() => props.navigation.navigate('AddMeal')}>
+        <TouchableOpacity onPress={() => props.navigation.navigate('AddMeal', {meal: props.meal})}>
             <View style={styles.mealWrapper}>
                 <Image source={props.icon} style={styles.logo} />
                 <Text style={styles.meal}>{props.meal}</Text>
