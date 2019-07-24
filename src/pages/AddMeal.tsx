@@ -13,6 +13,8 @@ import {NavigationScreenProps} from 'react-navigation';
 
 import {Colors} from '../styles/Colors';
 
+const test = ['apple'];
+
 const {height, width} = Dimensions.get('window');
 
 interface Props extends NavigationScreenProps<any> {}
@@ -80,6 +82,19 @@ export const AddMeal = (props: Props) => {
                     })}
                 </ScrollView>
             )}
+            {/*{test.map((food: any) => {*/}
+            {/*return (*/}
+            {/*<TouchableOpacity*/}
+            {/*key={food}*/}
+            {/*onPress={() => props.navigation.navigate('FoodInfo', {food})}*/}
+            {/*>*/}
+            {/*<View style={styles.searchResultsWrapper}>*/}
+            {/*<Text style={styles.food}>{food}</Text>*/}
+            {/*<Icon name="right" size={20} color={Colors.lightGray} />*/}
+            {/*</View>*/}
+            {/*</TouchableOpacity>*/}
+            {/*);*/}
+            {/*})}*/}
         </View>
     );
 };
